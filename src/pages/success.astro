@@ -14,6 +14,7 @@ if (session_id) {
     const session = await stripe.checkout.sessions.retrieve(session_id, {
       expand: ['line_items.data.price.product'],
     })
+    if (session.payment_status !== 'paid') throw new Error('not paid')
     for (const li of session.line_items?.data || []) {
       const product = (li.price as any)?.product
       const productId = product?.metadata?.product_id || ''

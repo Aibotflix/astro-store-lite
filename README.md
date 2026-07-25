@@ -113,6 +113,10 @@ Open **`src/config/store.ts`** and find `hasShipping: true`:
 
 Products with a `file` field are digital. After purchase, customers see a download button.
 
+**To add a digital product,** set the `file` field to a path in `public/`. For example, `"/downloads/presets.zip"` means place the file at `public/downloads/presets.zip`. Astro copies everything in `public/` as-is to your site.
+
+**Important:** Files in `public/` are publicly accessible — anyone who knows the URL can download them. For paid digital products in production, consider serving files through a protected endpoint or using a third-party fulfillment service (Stripe digital goods, Gumroad, etc.). This theme provides a basic download delivery but does not include access control for static files.
+
 ### Connect Stripe (so customers can pay you)
 
 1. Go to https://dashboard.stripe.com and log in

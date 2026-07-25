@@ -29,7 +29,7 @@ export const POST: APIRoute = async ({ request }) => {
           product_data: { name: p.name, images: [imageUrl], metadata: { product_id: item.id } },
           unit_amount: p.price,
         },
-        quantity: item.quantity || 1,
+        quantity: Math.min(Math.max(Math.trunc(item.quantity) || 1, 1), 100),
       }
     })
 

@@ -10,6 +10,7 @@ const products = defineCollection({
     image: z.string(),
     category: z.string(),
     description: z.string(),
+    file: z.string().optional(),
   }),
 })
 

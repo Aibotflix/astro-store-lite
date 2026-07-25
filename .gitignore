@@ -7,3 +7,7 @@ dist/
 # Local Netlify folder
 .netlify
 
+# Security audit files (not part of the theme)
+SECURITY-REVIEW.md
+SECURITY-FIXES.md
+

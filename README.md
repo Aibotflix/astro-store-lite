@@ -1,6 +1,6 @@
 # Astro Store Lite
 
-A free, simple online store template. Sell products without paying for expensive software.
+The only free Astro theme with built-in Stripe checkout — no Shopify, no React, no database. Add products in JSON and deploy to Netlify.
 
 ## What you'll need
 

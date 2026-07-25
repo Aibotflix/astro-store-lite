@@ -1,0 +1,140 @@
+---
+export const prerender = true
+import StoreLayout from '../layouts/StoreLayout.astro'
+import { SITE } from '../config/store'
+---
+
+<StoreLayout
+  title="About"
+  description="Astro Store Lite is a free, open-source Astro store theme with Stripe checkout, built for small online stores. Download and deploy in minutes."
+>
+  <section class="mx-auto max-w-3xl px-6 py-16 sm:py-24">
+    <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">Astro Store Lite: Free Astro Store Theme</h1>
+    <p class="mt-4 text-lg leading-relaxed" style="color: var(--color-text-muted);">
+      A lightweight, open-source online store template built with <a href="https://astro.build" class="accent-underline font-medium">Astro</a>, <a href="https://tailwindcss.com" class="accent-underline font-medium">Tailwind CSS</a>, and <a href="https://stripe.com" class="accent-underline font-medium">Stripe</a>. No framework, no database, no monthly fees.
+    </p>
+
+    <div class="mt-12 grid gap-8 sm:grid-cols-3">
+      <div class="rounded-2xl border p-6 text-center" style="border-color: var(--color-border); background: var(--color-surface);">
+        <div class="text-3xl font-bold" style="color: var(--color-accent);">Zero</div>
+        <div class="mt-1 text-sm font-medium" style="color: var(--color-text-muted);">framework JavaScript</div>
+      </div>
+      <div class="rounded-2xl border p-6 text-center" style="border-color: var(--color-border); background: var(--color-surface);">
+        <div class="text-3xl font-bold" style="color: var(--color-accent);">5 min</div>
+        <div class="mt-1 text-sm font-medium" style="color: var(--color-text-muted);">to deploy on Netlify</div>
+      </div>
+      <div class="rounded-2xl border p-6 text-center" style="border-color: var(--color-border); background: var(--color-surface);">
+        <div class="text-3xl font-bold" style="color: var(--color-accent);">Free</div>
+        <div class="mt-1 text-sm font-medium" style="color: var(--color-text-muted);">to use, forever</div>
+      </div>
+    </div>
+
+    <h2 class="mt-16 text-2xl font-bold tracking-tight">What is Astro Store Lite?</h2>
+    <p class="mt-4 leading-relaxed" style="color: var(--color-text-muted);">
+      Astro Store Lite is a free Astro store theme for selling a small number of products online. It connects directly to Stripe for payment processing, deploys to Netlify for free, and requires no database, no backend server, and no JavaScript framework on the frontend.
+    </p>
+    <p class="mt-4 leading-relaxed" style="color: var(--color-text-muted);">
+      The template uses <strong>Astro 7's static site generation</strong> for product pages and the homepage, with server-side rendering only for the Stripe checkout endpoint and success page. This keeps the site fast, cacheable, and cheap to host.
+    </p>
+
+    <h2 class="mt-12 text-2xl font-bold tracking-tight">Why use this Astro e-commerce template?</h2>
+    <p class="mt-4 leading-relaxed" style="color: var(--color-text-muted);">
+      Most e-commerce platforms charge monthly fees or take a cut of your sales. Astro Store Lite does neither. You pay only Stripe's transaction fees (2.9% + $0.30) and nothing else — no platform fees, no hosting costs on the free Netlify tier, no database subscriptions.
+    </p>
+    <ul class="mt-4 space-y-3 leading-relaxed" style="color: var(--color-text-muted);">
+      <li class="flex gap-3"><span class="mt-1 h-2 w-2 shrink-0 rounded-full" style="background: var(--color-accent);"></span><span><strong>Static by default</strong> — most pages are pre-built HTML. No server to maintain, no database to back up.</span></li>
+      <li class="flex gap-3"><span class="mt-1 h-2 w-2 shrink-0 rounded-full" style="background: var(--color-accent);"></span><span><strong>Stripe Checkout</strong> — Stripe hosts the payment page. You never touch credit card data.</span></li>
+      <li class="flex gap-3"><span class="mt-1 h-2 w-2 shrink-0 rounded-full" style="background: var(--color-accent);"></span><span><strong>Vanilla JavaScript</strong> — no React, no Vue, no build-time JavaScript framework. The cart and drawer are under 60 lines of plain JS.</span></li>
+      <li class="flex gap-3"><span class="mt-1 h-2 w-2 shrink-0 rounded-full" style="background: var(--color-accent);"></span><span><strong>Dark mode</strong> — automatic light/dark theme via <code class="rounded bg-[var(--color-surface-alt)] px-1.5 py-0.5 text-sm">prefers-color-scheme</code>.</span></li>
+    </ul>
+
+    <div class="mt-12 rounded-2xl border p-6 sm:p-8" style="border-color: var(--color-border); background: var(--color-surface);">
+      <h2 class="text-2xl font-bold tracking-tight">Lite vs Pro</h2>
+      <div class="mt-6 overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b text-left" style="border-color: var(--color-border);">
+              <th class="pb-3 pr-4 font-semibold">Feature</th>
+              <th class="pb-3 pr-4 font-semibold">Lite (free)</th>
+              <th class="pb-3 font-semibold">Pro ($99)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y" style="border-color: var(--color-border);">
+            <tr><td class="py-3 pr-4">Stripe checkout</td><td class="py-3 pr-4" style="color: var(--color-accent);">✓</td><td class="py-3" style="color: var(--color-accent);">✓</td></tr>
+            <tr><td class="py-3 pr-4">Product pages</td><td class="py-3 pr-4" style="color: var(--color-accent);">✓</td><td class="py-3" style="color: var(--color-accent);">✓</td></tr>
+            <tr><td class="py-3 pr-4">Dark mode</td><td class="py-3 pr-4" style="color: var(--color-accent);">✓</td><td class="py-3" style="color: var(--color-accent);">✓</td></tr>
+            <tr><td class="py-3 pr-4">Email notifications</td><td class="py-3 pr-4" style="color: var(--color-text-muted);">—</td><td class="py-3" style="color: var(--color-accent);">✓</td></tr>
+            <tr><td class="py-3 pr-4">Multiple color themes</td><td class="py-3 pr-4" style="color: var(--color-text-muted);">—</td><td class="py-3" style="color: var(--color-accent);">✓</td></tr>
+            <tr><td class="py-3 pr-4">Page transitions</td><td class="py-3 pr-4" style="color: var(--color-text-muted);">—</td><td class="py-3" style="color: var(--color-accent);">✓</td></tr>
+            <tr><td class="py-3 pr-4">Product search + filters</td><td class="py-3 pr-4" style="color: var(--color-text-muted);">—</td><td class="py-3" style="color: var(--color-accent);">✓</td></tr>
+            <tr><td class="py-3 pr-4">SEO structured data</td><td class="py-3 pr-4" style="color: var(--color-text-muted);">—</td><td class="py-3" style="color: var(--color-accent);">✓</td></tr>
+            <tr><td class="py-3 pr-4">Priority support</td><td class="py-3 pr-4" style="color: var(--color-text-muted);">—</td><td class="py-3" style="color: var(--color-accent);">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h2 class="mt-12 text-2xl font-bold tracking-tight">Who is this Astro store template for?</h2>
+    <p class="mt-4 leading-relaxed" style="color: var(--color-text-muted);">
+      Astro Store Lite is built for developers, freelancers, and small business owners who want a simple online store without the overhead of Shopify, WooCommerce, or a custom backend.
+    </p>
+    <p class="mt-4 leading-relaxed" style="color: var(--color-text-muted);">
+      If you know enough HTML to edit a JSON file, you can set up this store. All product data lives in a single <code class="rounded bg-[var(--color-surface-alt)] px-1.5 py-0.5 text-sm">products.json</code> file. The Stripe API key is the only environment variable.
+    </p>
+
+    <h2 class="mt-12 text-2xl font-bold tracking-tight">How it works</h2>
+    <ol class="mt-4 space-y-4 leading-relaxed" style="color: var(--color-text-muted);">
+      <li class="flex gap-3"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-sm font-bold" style="background: var(--color-accent); color: white;">1</span><span><strong>Add your products</strong> to <code class="rounded bg-[var(--color-surface-alt)] px-1.5 py-0.5 text-sm">products.json</code> with name, price, and image.</span></li>
+      <li class="flex gap-3"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-sm font-bold" style="background: var(--color-accent); color: white;">2</span><span><strong>Connect Stripe</strong> by adding your secret key to the <code class="rounded bg-[var(--color-surface-alt)] px-1.5 py-0.5 text-sm">.env</code> file.</span></li>
+      <li class="flex gap-3"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-sm font-bold" style="background: var(--color-accent); color: white;">3</span><span><strong>Deploy to Netlify</strong> via GitHub. Netlify builds and hosts the site for free.</span></li>
+      <li class="flex gap-3"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-sm font-bold" style="background: var(--color-accent); color: white;">4</span><span><strong>Start selling</strong> — customers pay through Stripe Checkout and you get the money in your Stripe account.</span></li>
+    </ol>
+
+    <div class="mt-16 flex flex-col items-center gap-4 rounded-2xl border p-8 text-center" style="border-color: var(--color-border); background: var(--color-surface);">
+      <h2 class="text-xl font-bold">Ready to build your store?</h2>
+      <p class="text-sm" style="color: var(--color-text-muted);">Download the free template from GitHub and have a working store in under 10 minutes.</p>
+      <a href="https://github.com/Aibotflix/astro-store-lite" class="inline-flex rounded-xl px-8 py-3 text-sm font-semibold transition-all hover:opacity-80" style="background: var(--color-accent); color: white;">Get Astro Store Lite on GitHub</a>
+    </div>
+
+    <h2 class="mt-16 text-2xl font-bold tracking-tight">Frequently asked questions</h2>
+    <div class="mt-6 space-y-6">
+      <div>
+        <h3 class="font-semibold">Do I need a credit card to use this?</h3>
+        <p class="mt-1 text-sm leading-relaxed" style="color: var(--color-text-muted);">No. Hosting on Netlify is free. Stripe charges only when you make a sale (2.9% + $0.30 per transaction). There are no monthly fees.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold">Can I sell digital products?</h3>
+        <p class="mt-1 text-sm leading-relaxed" style="color: var(--color-text-muted);">Yes. Add a <code class="rounded bg-[var(--color-surface-alt)] px-1.5 py-0.5 text-sm">file</code> field to any product in <code class="rounded bg-[var(--color-surface-alt)] px-1.5 py-0.5 text-sm">products.json</code> and it becomes a digital download. After purchase, customers see a download button on the success page.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold">How is this different from other Astro store themes?</h3>
+        <p class="mt-1 text-sm leading-relaxed" style="color: var(--color-text-muted);">Most Astro store themes require Snipcart or a similar third-party cart service. Astro Store Lite connects directly to Stripe without any middleware. It also uses zero framework JavaScript, making it smaller and faster than React-based alternatives.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold">Can I customize the design?</h3>
+        <p class="mt-1 text-sm leading-relaxed" style="color: var(--color-text-muted);">Yes. All colors are defined as CSS variables in <code class="rounded bg-[var(--color-surface-alt)] px-1.5 py-0.5 text-sm">global.css</code>. Change the palette, swap the hero image, edit the layouts — it's a static Astro template you own completely.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold">Does it support multiple currencies or languages?</p>
+        <p class="mt-1 text-sm leading-relaxed" style="color: var(--color-text-muted);">Not in Lite. The Pro version adds multi-currency support and i18n-ready structure. Lite is USD-only with a single-language layout.</p>
+      </div>
+    </div>
+  </section>
+</StoreLayout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Astro Store Lite",
+  "description": "A free, open-source Astro store theme with Stripe checkout, built for small online stores.",
+  "url": "https://github.com/Aibotflix/astro-store-lite",
+  "applicationCategory": "ECommerce",
+  "operatingSystem": "Cross-platform",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>

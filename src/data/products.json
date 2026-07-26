@@ -5,7 +5,7 @@
     "price": 2499,
     "image": "https://plus.unsplash.com/premium_photo-1719289799337-9cb436447965?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "Drinkware",
-    "description": "Handcrafted from high-fired stoneware with a matte glaze finish. Holds 12 oz."
+    "description": "Hand-thrown stoneware mug fired at 2200°F for a finish that only improves with age. The ergonomic handle sits low for a balanced grip, and the 12 oz capacity is the Goldilocks of morning coffee — enough to wake you up, not so much that it goes cold. Each piece carries subtle variations in glaze depth that make it unmistakably yours. Dishwasher and microwave safe."
   },
   {
     "id": "canvas-tote",
@@ -13,7 +13,7 @@
     "price": 3499,
     "image": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&q=80",
     "category": "Bags",
-    "description": "12 oz heavyweight cotton canvas tote."
+    "description": "Built from 12 oz heavyweight cotton canvas that starts stiff and breaks in like a good pair of jeans. The unlined interior swallows a laptop, a week of groceries, or a beach day without complaint. Extended 10\" straps clear your shoulder even in a winter coat. Reinforced bottom and bar-tacked stress points mean this bag outlasts trends — and probably your phone."
   },
   {
     "id": "linen-notebook",
@@ -21,7 +21,7 @@
     "price": 1899,
     "image": "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&q=80",
     "category": "Stationery",
-    "description": "A5 hardcover notebook, 192 pages."
+    "description": "A5 hardcover bound in Belgian linen with a subtle woven texture that begs to be handled. Opens flat thanks to the lay-flat binding — no cracking the spine or wrestling pages. 192 pages of 100 gsm fountain-pen-friendly paper that handles ink without bleed-through. Ruled interior, ribbon bookmark, and expandable back pocket for loose notes."
   },
   {
     "id": "photo-preset-pack",
@@ -29,7 +29,7 @@
     "price": 1499,
     "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80",
     "category": "Digital",
-    "description": "10 professional Lightroom presets.",
+    "description": "10 professionally graded Lightroom presets built for travel, portrait, and lifestyle photography. Each preset is non-destructive, fully customizable, and tuned for natural skin tones across diverse lighting conditions. From warm golden-hour tones to moody desaturated looks — one click and your RAW files go from flat to finished. Works with Lightroom Classic, CC, and mobile. Instant download after purchase.",
     "file": "/downloads/presets.zip"
   }
 ]

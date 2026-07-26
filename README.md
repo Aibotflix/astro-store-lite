@@ -8,6 +8,8 @@ The only free Astro theme with built-in Stripe checkout — no Shopify, no React
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/G4R823VWEM)
 
+![Astro Store Lite screenshot](/screenshot.png)
+
 ## What you'll need
 
 **Software to install (all free):**

@@ -10,32 +10,28 @@ export interface Props {
 
 const { product } = Astro.props
 const img = product.data.image || '/placeholder.svg'
+const payload = JSON.stringify({
+  id: product.id, name: product.data.name, price: product.data.price, image: img,
+})
 ---
 
-<article class={`product-card group flex flex-col overflow-hidden rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl glass h-full ${Astro.props.class || ''}`} style="border-color: var(--color-border);">
-  <a href={`/product/${product.id}/`} class="block overflow-hidden aspect-square">
-    <Image src={img} alt={product.data.name} width={400} height={400} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" decoding="async" unoptimized />
+<article class={`product-card group glass border-border flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${Astro.props.class || ''}`}>
+  <a href={`/product/${product.id}/`} class="aspect-square block overflow-hidden">
+    <Image src={img} alt={product.data.name} width={400} height={400} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" decoding="async" />
   </a>
   <div class="flex flex-1 flex-col gap-3 p-5">
     <div class="flex flex-col gap-1">
-      <a href={`/product/${product.id}/`} class="text-lg font-semibold leading-tight no-underline transition-colors hover:opacity-70" style="color: var(--color-text);">
-        {product.data.name}
-      </a>
+      <a href={`/product/${product.id}/`} class="text-text no-underline leading-tight text-lg font-semibold transition-colors hover:opacity-70">{product.data.name}</a>
       {product.data.category && (
-        <span class="text-xs font-medium uppercase tracking-wider" style="color: var(--color-text-muted);">
-          {product.data.category}
-        </span>
+        <span class="text-text-muted text-xs font-medium uppercase tracking-wider">{product.data.category}</span>
       )}
     </div>
     <div class="mt-auto flex items-center justify-between gap-4">
       <span class="text-xl font-bold">{formatPrice(product.data.price)}</span>
       <button
-        class="add-to-cart shrink-0 cursor-pointer rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
-        style="background: var(--color-accent); color: white;"
-        data-id={product.id}
-        data-name={product.data.name}
-        data-price={product.data.price}
-        data-image={img}
+        class="add-to-cart bg-accent text-white shrink-0 cursor-pointer rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
+        data-product={payload}
+        aria-label={`Add ${product.data.name} to cart`}
       >
         Add to Cart
       </button>
@@ -44,24 +40,11 @@ const img = product.data.image || '/placeholder.svg'
 </article>
 
 <script>
-  document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', () => {
-      const id = button.getAttribute('data-id');
-      const name = button.getAttribute('data-name');
-      const price = parseFloat(button.getAttribute('data-price') || '0');
-      const image = button.getAttribute('data-image');
-      
-      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      const existing = cart.find(item => item.id === id);
-      
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        cart.push({ id, name, price, image, quantity: 1 });
-      }
-      
-      localStorage.setItem('cart', JSON.stringify(cart));
-      window.dispatchEvent(new Event('cart-updated'));
-    });
-  });
+  import { addToCart } from '../scripts/cart'
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('.add-to-cart') as HTMLElement | null
+    if (!btn) return
+    const item = JSON.parse(btn.dataset.product || '{}')
+    addToCart(item, 1)
+  })
 </script>

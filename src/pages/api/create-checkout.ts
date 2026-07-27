@@ -5,15 +5,18 @@ import Stripe from 'stripe'
 import { SITE } from '../../config/store'
 import products from '../../data/products.json'
 
-const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY!)
-
 const PRODUCTS: Record<string, { name: string; price: number; image: string }> = {}
 for (const p of products) {
   PRODUCTS[p.id] = { name: p.name, price: p.price, image: p.image || '/placeholder.svg' }
 }
 
+function getStripe() {
+  return new Stripe(import.meta.env.STRIPE_SECRET_KEY!)
+}
+
 export const POST: APIRoute = async ({ request }) => {
   try {
+    const stripe = getStripe()
     const { items } = await request.json()
     if (!items?.length) return new Response(JSON.stringify({ error: 'Cart is empty' }), { status: 400 })
 

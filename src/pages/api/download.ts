@@ -6,11 +6,13 @@ import products from '../../data/products.json'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY!)
-
 const PRODUCT_FILES: Record<string, string> = {}
 for (const p of products) {
   if (p.file) PRODUCT_FILES[p.id] = p.file
+}
+
+function getStripe() {
+  return new Stripe(import.meta.env.STRIPE_SECRET_KEY!)
 }
 
 export const GET: APIRoute = async ({ url }) => {
@@ -27,6 +29,7 @@ export const GET: APIRoute = async ({ url }) => {
   }
 
   try {
+    const stripe = getStripe()
     const session = await stripe.checkout.sessions.retrieve(session_id)
     if (session.payment_status !== 'paid') {
       return new Response('Payment not confirmed', { status: 403 })

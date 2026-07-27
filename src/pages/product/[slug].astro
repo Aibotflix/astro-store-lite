@@ -12,40 +12,37 @@ export async function getStaticPaths() {
 
 const { product } = Astro.props
 const img = product.data.image || '/placeholder.svg'
+const payload = JSON.stringify({
+  id: product.id, name: product.data.name, price: product.data.price, image: img,
+})
 ---
 
 <StoreLayout title={product.data.name} description={product.data.description} image={img.startsWith('http') ? img : undefined}>
   <article class="mx-auto max-w-7xl px-6 py-12 sm:py-16 lg:py-20">
     <div class="grid gap-12 lg:grid-cols-2 lg:items-start">
       <div class="overflow-hidden rounded-2xl">
-        <Image src={img} alt={product.data.name} width={800} height={600} class="w-full object-cover" unoptimized />
+        <Image src={img} alt={product.data.name} width={800} height={600} class="w-full object-cover" />
       </div>
       <div class="flex flex-col gap-6">
         {product.data.category && (
-          <span class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest" style="color: var(--color-text-muted);">
-            <span class="inline-block h-1.5 w-1.5 rounded-full" style="background: var(--color-accent);"></span>
+          <span class="text-text-muted flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest">
+            <span class="bg-accent inline-block h-1.5 w-1.5 rounded-full"></span>
             {product.data.category}
           </span>
         )}
-        <h1 class="text-3xl font-bold tracking-tight sm:text-4xl accent-underline">{product.data.name}</h1>
-        <p class="text-3xl font-bold" style="color: var(--color-accent);">{formatPrice(product.data.price)}</p>
-        <div class="leading-relaxed" style="color: var(--color-text-muted);">
-          {product.data.description}
-        </div>
+        <h1 class="accent-underline text-3xl font-bold tracking-tight sm:text-4xl">{product.data.name}</h1>
+        <p class="text-accent text-3xl font-bold">{formatPrice(product.data.price)}</p>
+        <div class="text-text-muted leading-relaxed">{product.data.description}</div>
         <div class="flex items-center gap-4">
-          <div class="flex items-center gap-3 rounded-xl border px-4 py-3" style="border-color: var(--color-border);">
-            <button class="qty-adjust cursor-pointer text-lg leading-none transition-colors hover:text-[var(--color-accent)]" style="color: var(--color-text-muted);">−</button>
+          <div class="border-border flex items-center gap-3 rounded-xl border px-4 py-3">
+            <button class="qty-adjust text-text-muted cursor-pointer text-lg leading-none transition-colors hover:text-accent" aria-label="Decrease quantity">−</button>
             <span id="qty-display" class="min-w-[1.5rem] text-center font-medium">1</span>
-            <button class="qty-adjust cursor-pointer text-lg leading-none transition-colors hover:text-[var(--color-accent)]" style="color: var(--color-text-muted);">+</button>
+            <button class="qty-adjust text-text-muted cursor-pointer text-lg leading-none transition-colors hover:text-accent" aria-label="Increase quantity">+</button>
           </div>
           <button
             id="add-btn"
-            class="inline-flex w-full items-center justify-center gap-2 rounded-xl px-8 py-4 text-base font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] sm:w-auto"
-            style="background: var(--color-accent); color: white;"
-            data-id={product.id}
-            data-name={product.data.name}
-            data-price={product.data.price}
-            data-image={img}
+            class="bg-accent text-white inline-flex w-full items-center justify-center gap-2 rounded-xl px-8 py-4 text-base font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] sm:w-auto"
+            data-payload={payload}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
             Add to Cart — {formatPrice(product.data.price)}
@@ -57,32 +54,26 @@ const img = product.data.image || '/placeholder.svg'
 </StoreLayout>
 
 <script>
-  let qty = 1
-  const display = document.getElementById('qty-display')
-  document.querySelectorAll('.qty-adjust').forEach(btn => {
-    btn.addEventListener('click', () => {
-      qty += btn.textContent === '−' ? -1 : 1
-      if (qty < 1) qty = 1
-      display.textContent = qty
-    })
-  })
+  import { addToCart } from '../../scripts/cart'
 
-  document.getElementById('add-btn').addEventListener('click', function() {
-    const id = this.getAttribute('data-id');
-    const name = this.getAttribute('data-name');
-    const price = parseFloat(this.getAttribute('data-price') || '0');
-    const image = this.getAttribute('data-image');
-    
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    const existing = cart.find(item => item.id === id);
-    
-    if (existing) {
-      existing.quantity += qty;
-    } else {
-      cart.push({ id, name, price, image, quantity: qty });
-    }
-    
-    localStorage.setItem('cart', JSON.stringify(cart));
-    window.dispatchEvent(new Event('cart-updated'));
-  });
+  let qty = 1
+  function wireProductPage() {
+    qty = 1
+    const display = document.getElementById('qty-display')
+    if (!display) return
+    document.querySelectorAll('.qty-adjust').forEach(btn => {
+      btn.addEventListener('click', () => {
+        qty += btn.textContent === '−' ? -1 : 1
+        if (qty < 1) qty = 1
+        display.textContent = String(qty)
+      })
+    })
+    const addBtn = document.getElementById('add-btn') as HTMLElement | null
+    addBtn?.addEventListener('click', () => {
+      const item = JSON.parse(addBtn.dataset.payload || '{}')
+      addToCart(item, qty)
+    })
+  }
+
+  document.addEventListener('astro:page-load', wireProductPage)
 </script>

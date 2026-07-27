@@ -166,9 +166,13 @@ Open **`src/components/Hero.astro`**. Edit any of these:
 
 ## Step 4: Put your store online
 
-Your store needs a host that can run Node.js (for payment processing). Basic shared hosting won't work.
+Your store needs a host that can run Node.js on the server (for Stripe payment processing).
 
-**The easiest (and free) option is Netlify.**
+**GoDaddy / Hostinger / Bluehost etc.:** Their basic shared hosting can't run a Node.js backend. You keep your domain there, but your store runs on one of the free hosts below — you point your domain at it. This is standard for modern stores.
+
+---
+
+### Option A: Netlify (recommended — works with the included adapter)
 
 1. Download **GitHub Desktop** from https://desktop.github.com — it's free
 2. Open GitHub Desktop and sign in with your GitHub account
@@ -183,27 +187,33 @@ Your store needs a host that can run Node.js (for payment processing). Basic sha
 
 Then:
 
-1. Go to Site settings → Environment variables → Add a variable
-   - Key: `STRIPE_SECRET_KEY`
-   - Value: paste your Stripe key (the same one from your `.env` file)
+1. Go to **Site settings → Environment variables → Add a variable**
+   - **Key:** `STRIPE_SECRET_KEY`
+   - **Value:** paste your Stripe secret key (same one from your `.env` file)
 
-2. Open **`src/config/store.ts`** and update `url:` to your actual Netlify URL (looks like `https://random-name-123456.netlify.app`)
+2. Open **`src/config/store.ts`** and update `url:` to your actual Netlify URL
 
-3. In GitHub Desktop, you'll see the change you just made. Write "updated URL" and click "Commit to main", then "Push origin" to send it to GitHub. Netlify will automatically rebuild.
+3. In GitHub Desktop, commit and push the change — Netlify automatically rebuilds
 
-### Use your own domain (optional)
+### Option B: Cloudflare Workers (verified — the live demo runs here)
 
-You can use a custom domain like `yourstore.com` instead of the random Netlify URL.
+The adapter is already pre-configured and tested. Follow the [Cloudflare deployment guide](https://docs.astro.build/en/guides/deploy/cloudflare/).
 
-1. Buy a domain from anywhere (Google Domains, Namecheap, GoDaddy, etc.)
-2. On Netlify, go to your site → Domain settings → Add custom domain
-3. Type your domain and follow Netlify's instructions to update your DNS settings
-4. Update the `url:` in **`src/config/store.ts`** to your new domain
-5. Commit and push in GitHub Desktop — Netlify rebuilds
+**To switch from Netlify to Cloudflare:**  
+In `astro.config.mjs`, change `import netlify from '@astrojs/netlify'` → `import cloudflare from '@astrojs/cloudflare'` and the `adapter` line to match. Deploy via `npm run build` and upload the `dist/` folder to Cloudflare Workers.
 
-Netlify handles HTTPS automatically (free SSL certificate).
+### Option C: Vercel or Node (any SSR-compatible host)
 
-**Want to use a different host?** Your host needs to support Node.js server-side rendering. Vercel and Cloudflare Pages work (you'll need to change the adapter). Hostinger, GoDaddy, and Bluehost shared plans won't work — they can't run the payment backend. Stick with Netlify for the easiest setup.
+Install `@astrojs/vercel` or `@astrojs/node`, swap the adapter line the same way.
+
+### Use your own domain
+
+1. Buy a domain from GoDaddy, Namecheap, Google Domains, or anywhere
+2. On your host (Netlify / Cloudflare / Vercel), go to Domain settings → Add custom domain
+3. Follow the instructions to point your DNS at your host
+4. Update the `url:` in **`src/config/store.ts`** to your domain
+
+All three hosts handle HTTPS automatically (free SSL certificate).
 
 ---
 

@@ -3,13 +3,13 @@ export const prerender = false
 import StoreLayout from '../layouts/StoreLayout.astro'
 import Stripe from 'stripe'
 
-const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY!)
 const session_id = Astro.url.searchParams.get('session_id')
 
 let purchased: { name: string; productId: string }[] = []
 
 if (session_id) {
   try {
+    const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY!)
     const session = await stripe.checkout.sessions.retrieve(session_id, {
       expand: ['line_items.data.price.product'],
     })
@@ -25,25 +25,25 @@ if (session_id) {
 
 <StoreLayout title="Order confirmed">
   <div class="mx-auto max-w-xl px-6 py-24 text-center">
-    <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full text-2xl" style="background: var(--color-accent); color: white;">✓</div>
+    <div class="bg-accent text-white mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full text-2xl">✓</div>
     <h1 class="text-3xl font-bold tracking-tight">Order confirmed!</h1>
-    <p class="mt-4" style="color: var(--color-text-muted);">Thanks for your order.</p>
+    <p class="text-text-muted mt-4">Thanks for your order.</p>
 
     {purchased.length > 0 && (
-      <div class="mt-8 rounded-2xl border p-6 text-left" style="border-color: var(--color-border);">
-        <h2 class="text-lg font-semibold mb-4">Your downloads</h2>
+      <div class="border-border mt-8 rounded-2xl border p-6 text-left">
+        <h2 class="mb-4 text-lg font-semibold">Your downloads</h2>
         <ul class="space-y-3">
           {purchased.filter(p => p.productId).map(p => (
-            <li class="flex items-center justify-between rounded-xl px-4 py-3" style="background: var(--color-surface-alt);">
+            <li class="bg-surface-alt flex items-center justify-between rounded-xl px-4 py-3">
               <span>{p.name}</span>
-              <a href={`/api/download?session_id=${session_id}&product=${p.productId}`} download class="rounded-lg px-4 py-2 text-sm font-semibold transition-all hover:opacity-80" style="background: var(--color-accent); color: white;">Download</a>
+              <a href={`/api/download?session_id=${session_id}&product=${p.productId}`} download class="bg-accent text-white rounded-lg px-4 py-2 text-sm font-semibold transition-all hover:opacity-80">Download</a>
             </li>
           ))}
         </ul>
       </div>
     )}
 
-    <a href="/" class="mt-8 inline-flex rounded-xl px-6 py-3 text-sm font-semibold transition-all hover:opacity-80" style="background: var(--color-accent); color: white;">Continue shopping</a>
+    <a href="/" class="bg-accent text-white mt-8 inline-flex rounded-xl px-6 py-3 text-sm font-semibold transition-all hover:opacity-80">Continue shopping</a>
   </div>
 </StoreLayout>
 

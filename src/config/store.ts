@@ -1,5 +1,3 @@
-import type { CollectionEntry } from 'astro:content'
-
 export const SITE = {
   name: 'My Store',
   url: 'https://your-store.netlify.app',

@@ -1,6 +1,6 @@
 # Astro Store Lite
 
-The only free Astro theme with built-in Stripe checkout — no Shopify, no React, no database. Add products in JSON and deploy to Netlify.
+The only free Astro 7 theme with built-in Stripe checkout — no Shopify, no React, no database. Add products in JSON and deploy to Netlify or Cloudflare.
 
 **[Live demo →](https://astro-store-lite.aibotflix.workers.dev/)**
 

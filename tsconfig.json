@@ -1,4 +1,9 @@
 {
-  "compilerOptions": { "jsx": "preserve" },
-  "extends": "astro/tsconfigs/strict"
+  "compilerOptions": {
+    "jsx": "preserve"
+  },
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    "./worker-configuration.d.ts"
+  ]
 }
